@@ -37,6 +37,9 @@ app.use(
     changeOrigin: true,
     onProxyReq: (proxyReq, req, res) => {
       // Optionally, you can modify the request here
+      proxyReq.setHeader("Origin", targetUrl);
+      proxyReq.setHeader("Referer", targetUrl);
+      proxyReq.setHeader("Host", new URL(targetUrl).host);
     },
     onProxyRes: (proxyRes, req, res) => {
       // Optionally, you can modify the response here
